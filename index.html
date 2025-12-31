@@ -9,52 +9,36 @@
     <style>
         :root { --gold: #ff9f43; --dark: #0a0a0a; --green: #00ff88; --card: #111; }
         body { font-family: 'Poppins', sans-serif; margin: 0; background: #000; color: white; -webkit-tap-highlight-color: transparent; }
-
         header { background: #111; padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; position: sticky; top: 0; z-index: 1000; }
         .logo { font-size: 1.4rem; font-weight: bold; color: var(--gold); cursor: pointer; }
-
-        /* Categories */
         .categories { display: flex; gap: 12px; padding: 12px; overflow-x: auto; white-space: nowrap; background: #0a0a0a; border-bottom: 1px solid #222; }
         .category-btn { background: #222; color: white; border: none; padding: 10px 20px; border-radius: 30px; font-size: 0.9rem; cursor: pointer; transition: 0.2s; }
         .category-btn.active { background: var(--gold); color: black; font-weight: bold; }
-
-        /* Sidebar */
         .sidebar { height: 100%; width: 0; position: fixed; z-index: 5000; top: 0; right: 0; background: #0d0d0d; transition: 0.3s; border-left: 1px solid #333; overflow-y: auto; }
         .menu-list { padding: 10px; }
         .menu-item { display: flex; align-items: center; gap: 15px; padding: 15px; color: white; text-decoration: none; border-bottom: 1px solid #1a1a1a; cursor: pointer; }
         .menu-item i { color: var(--gold); width: 25px; font-size: 1.2rem; }
-
-        /* Product Grid */
         .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 12px; }
         .card { background: var(--card); border-radius: 15px; padding: 12px; border: 1px solid #222; display: flex; flex-direction: column; }
         .card img { width: 100%; border-radius: 10px; height: 130px; object-fit: contain; background: #000; }
         .prod-info { margin-top: 10px; }
         .prod-info h4 { font-size: 0.85rem; margin: 0; color: #eee; height: 35px; overflow: hidden; }
         .prod-desc { font-size: 0.7rem; color: #777; margin: 5px 0; }
-        .price-row { display: flex; flex-direction: column; margin-top: 5px; }
         .price { color: var(--green); font-weight: bold; font-size: 1.1rem; }
         .watermark { font-size: 8px; color: var(--gold); font-weight: bold; opacity: 0.7; margin-top: 2px; }
-        .btn-buy { background: var(--gold); color: black; border: none; padding: 10px; border-radius: 8px; font-weight: bold; font-size: 0.85rem; margin-top: 12px; cursor: pointer; transition: 0.2s; }
-        .btn-buy:active { transform: scale(0.95); }
-
-        /* Modals */
+        .btn-buy { background: var(--gold); color: black; border: none; padding: 10px; border-radius: 8px; font-weight: bold; font-size: 0.85rem; margin-top: 12px; cursor: pointer; }
         .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; display: none; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; }
-        .modal-content { background: #161616; width: 100%; max-width: 400px; padding: 25px; border-radius: 20px; border: 1px solid #333; text-align: center; }
-        input, textarea { width: 100%; padding: 14px; margin: 10px 0; background: #222; border: 1px solid #444; color: white; border-radius: 10px; box-sizing: border-box; outline: none; }
-        .pay-option { display: flex; align-items: center; gap: 15px; background: #222; padding: 12px; border-radius: 10px; margin-bottom: 8px; border: 1px solid #333; cursor: pointer; }
-        .pay-option:hover { border-color: var(--gold); }
-
-        /* AI Chatbox - Improved Dark Theme */
-        #ai-chat { position: fixed; bottom: 20px; right: 20px; width: 300px; height: 400px; background: #0d0d0d; border-radius: 15px; display: none; flex-direction: column; z-index: 10000; box-shadow: 0 5px 30px rgba(0,0,0,0.8); border: 1px solid #333; }
+        .modal-content { background: #161616; width: 100%; max-width: 400px; padding: 25px; border-radius: 20px; border: 1px solid #333; }
+        input, textarea { width: 100%; padding: 14px; margin: 10px 0; background: #222; border: 1px solid #444; color: white; border-radius: 10px; box-sizing: border-box; }
+        #ai-chat { position: fixed; bottom: 20px; right: 20px; width: 300px; height: 400px; background: #0d0d0d; border-radius: 15px; display: none; flex-direction: column; z-index: 10000; border: 1px solid #333; }
         .chat-head { background: var(--gold); color: black; padding: 12px; font-weight: bold; display: flex; justify-content: space-between; border-radius: 15px 15px 0 0; }
         #chat-body { flex: 1; padding: 10px; overflow-y: auto; background: #111; display: flex; flex-direction: column; gap: 8px; }
-        .msg { padding: 10px 14px; border-radius: 15px; max-width: 80%; word-wrap: break-word; }
+        .msg { padding: 10px 14px; border-radius: 15px; max-width: 80%; }
         .msg.ai { background: #222; align-self: flex-start; }
         .msg.user { background: var(--gold); color: black; align-self: flex-end; }
         #ai-input { display: flex; border-top: 1px solid #333; }
         #ai-msg { flex: 1; border: none; padding: 12px; background: #222; color: white; }
         #ai-send { padding: 12px; background: var(--gold); border: none; cursor: pointer; }
-
         #loading { text-align: center; padding: 50px; font-size: 1.2rem; color: var(--gold); }
     </style>
 </head>
@@ -77,48 +61,37 @@
     <div id="sidebar" class="sidebar">
         <div style="padding:20px; border-bottom:1px solid #222; display:flex; justify-content:space-between; align-items:center;">
             <span style="color:var(--gold); font-weight:bold;">KALA BAZAR</span>
-            <i class="fas fa-times" onclick="closeMenu()" style="font-size: 20px;"></i>
+            <i class="fas fa-times" onclick="closeMenu()" style="font-size: 20px; cursor:pointer;"></i>
         </div>
         <div class="menu-list">
-            <div class="menu-item" onclick="location.reload(); closeMenu()"><i class="fas fa-home"></i> <span>Home Page</span></div>
-            <div class="menu-item" onclick="alert('No orders yet.'); closeMenu()"><i class="fas fa-box-open"></i> <span>My Orders</span></div>
-            <div class="menu-item" onclick="toggleAI(); closeMenu()"><i class="fas fa-robot"></i> <span>AI Assistant</span></div>
-            <div class="menu-item" onclick="alert('Policy: 7 Days Return, Secure Checkout, Fast Delivery.'); closeMenu()"><i class="fas fa-lock"></i> <span>Privacy Policy</span></div>
+            <div class="menu-item" onclick="location.reload()"><i class="fas fa-home"></i> <span>Home Page</span></div>
+            <div class="menu-item" onclick="toggleAI()"><i class="fas fa-robot"></i> <span>AI Assistant</span></div>
         </div>
     </div>
 
     <div id="loading">Loading products...</div>
     <div class="grid" id="productGrid"></div>
 
-    <!-- Address Modal -->
     <div id="addrModal" class="modal">
-        <div class="modal-content" style="text-align:left;">
+        <div class="modal-content" style="padding:20px;">
             <h3 style="color:var(--gold); text-align:center;">Shipping Address</h3>
             <input type="text" id="cust-name" placeholder="Full Name">
-            <input type="text" id="cust-city" placeholder="City & State">
             <textarea id="cust-addr" rows="3" placeholder="Full Address with Pincode"></textarea>
             <button class="btn-buy" style="width:100%;" onclick="openPayment()">NEXT: PAYMENT</button>
             <button onclick="closeModal('addrModal')" style="background:none; border:none; color:red; width:100%; margin-top:10px;">Back</button>
         </div>
     </div>
 
-    <!-- Payment Modal -->
     <div id="payModal" class="modal">
-        <div class="modal-content" style="border: 2px solid var(--gold);">
-            <h2 style="color:var(--gold); margin-top:0;">CHOOSE PAYMENT</h2>
-            <div id="final-price" style="color:var(--green); font-size:1.5rem; margin-bottom:20px; font-weight:bold;"></div>
-            
-            <div class="pay-option" onclick="alert('Opening Google Pay / PhonePe...')"><i class="fab fa-google-pay" style="font-size:1.5rem;"></i> Google Pay / PhonePe</div>
-            <div class="pay-option" onclick="alert('Opening Paytm / UPI...')"><i class="fas fa-wallet"></i> Paytm / UPI</div>
-            <div class="pay-option" onclick="alert('BTC/USDT Address Copied!')"><i class="fab fa-bitcoin"></i> Crypto (USDT/BTC)</div>
-            
-            <input type="text" placeholder="Transaction ID (UTR)" style="margin-top:10px; border-color:var(--gold);">
+        <div class="modal-content" style="padding:20px; border: 2px solid var(--gold);">
+            <h2 style="color:var(--gold); text-align:center;">PAYMENT</h2>
+            <div id="final-price" style="color:var(--green); font-size:1.5rem; text-align:center; font-weight:bold; margin-bottom:20px;"></div>
+            <input type="text" placeholder="Transaction ID (UTR)">
             <button class="btn-buy" style="width:100%; background:var(--green);" onclick="confirmOrder()">CONFIRM ORDER</button>
             <button onclick="closeModal('payModal')" style="background:none; border:none; color:red; width:100%; margin-top:15px;">Cancel</button>
         </div>
     </div>
 
-    <!-- AI Chat -->
     <div id="ai-chat">
         <div class="chat-head">KALA AI 🤖 <span onclick="toggleAI()" style="cursor:pointer;">×</span></div>
         <div id="chat-body">
@@ -132,104 +105,86 @@
 
     <script>
         const products = [
-            // Low price accessories (electronics)
-            { "name": "Microfiber Cleaning Cloth", "desc": "Pack of 5 for Screens & Lenses", "price": "99", "img": "https://via.placeholder.com/300x300?text=Microfiber+Cloth", "category": "electronics" },
-            { "name": "Anti Dust Plugs", "desc": "Pack of 10 for Phone Charging Port", "price": "99", "img": "https://via.placeholder.com/300x300?text=Dust+Plugs", "category": "electronics" },
-            { "name": "USB LED Light", "desc": "Flexible Laptop Keyboard Light", "price": "119", "img": "https://via.placeholder.com/300x300?text=USB+LED+Light", "category": "electronics" },
-            { "name": "USB OTG Adapter", "desc": "Type-C to USB Adapter", "price": "129", "img": "https://via.placeholder.com/300x300?text=OTG+Adapter", "category": "electronics" },
-            { "name": "3.5mm Aux Cable", "desc": "Braided Audio Cable 1M", "price": "149", "img": "https://via.placeholder.com/300x300?text=Aux+Cable", "category": "electronics" },
-            { "name": "Cable Organizer Clips", "desc": "Pack of 10 Adhesive Clips", "price": "179", "img": "https://via.placeholder.com/300x300?text=Cable+Clips", "category": "electronics" },
-            { "name": "Phone Ring Holder", "desc": "360 Degree Rotation Metal Stand", "price": "159", "img": "https://via.placeholder.com/300x300?text=Ring+Holder", "category": "electronics" },
-            { "name": "PopSocket Grip", "desc": "Collapsible Phone Holder & Stand", "price": "199", "img": "https://via.placeholder.com/300x300?text=PopSocket", "category": "electronics" },
-            { "name": "Earphone Carrying Case", "desc": "Hard Shell Protective Case", "price": "229", "img": "https://via.placeholder.com/300x300?text=Earphone+Case", "category": "electronics" },
-            { "name": "Portable Mini Fan", "desc": "USB Rechargeable Handheld Fan", "price": "249", "img": "https://via.placeholder.com/300x300?text=Mini+Fan", "category": "electronics" },
+            // Accessories
+            { "name": "Microfiber Cloth", "desc": "Pack of 5 Cleaning Cloth", "price": "99", "img": "https://img.icons8.com/fluency/200/microfiber-eyeglass-cleaning-cloth.png", "category": "electronics" },
+            { "name": "Anti Dust Plugs", "desc": "Pack of 10 Dust Plugs", "price": "99", "img": "https://img.icons8.com/fluency/200/usb-connected.png", "category": "electronics" },
+            { "name": "USB LED Light", "desc": "Flexible Keyboard Light", "price": "119", "img": "https://img.icons8.com/fluency/200/light-on.png", "category": "electronics" },
+            { "name": "USB OTG Adapter", "desc": "Type-C to USB", "price": "129", "img": "https://img.icons8.com/fluency/200/usb-adapter.png", "category": "electronics" },
+            { "name": "3.5mm Aux Cable", "desc": "Braided Audio Cable", "price": "149", "img": "https://img.icons8.com/fluency/200/audio-cable.png", "category": "electronics" },
+            { "name": "Cable Clips", "desc": "Pack of 10 Clips", "price": "179", "img": "https://img.icons8.com/fluency/200/wire.png", "category": "electronics" },
+            { "name": "Phone Ring Holder", "desc": "360 Rotation Stand", "price": "159", "img": "https://img.icons8.com/fluency/200/finger-print-recognition.png", "category": "electronics" },
+            { "name": "PopSocket Grip", "desc": "Collapsible Holder", "price": "199", "img": "https://img.icons8.com/fluency/200/smartphone-tablet.png", "category": "electronics" },
+            { "name": "Earphone Case", "desc": "Hard Shell Protection", "price": "229", "img": "https://img.icons8.com/fluency/200/box.png", "category": "electronics" },
+            { "name": "Mini Fan", "desc": "USB Rechargeable", "price": "249", "img": "https://img.icons8.com/fluency/200/fan.png", "category": "electronics" },
 
-            // Main list
-            { "name": "boAt Bassheads 100", "desc": "Wired Earphones with Mic, Black.", "price": "399", "img": "https://m.media-amazon.com/images/I/31S7X9Vv69L.jpg", "category": "electronics" },
-            { "name": "SanDisk 64GB Pendrive", "desc": "USB 3.0 Flash Drive, High Speed.", "price": "449", "img": "https://m.media-amazon.com/images/I/61DjRzB6SdL.jpg", "category": "electronics" },
-            { "name": "Mi Step Out Backpack", "desc": "12L Water Resistant Small Backpack.", "price": "499", "img": "https://m.media-amazon.com/images/I/719FAn+69ML.jpg", "category": "fashion" },
-            { "name": "Ambrane 10000mAh Bank", "desc": "Fast Charging Power Bank, Dual Output.", "price": "999", "img": "https://m.media-amazon.com/images/I/61N6K1+C5GL.jpg", "category": "electronics" },
-            { "name": "Portronics Wireless Mouse", "desc": "Silent Buttons, 2.4GHz USB Receiver.", "price": "299", "img": "https://m.media-amazon.com/images/I/51p8U68fPXL.jpg", "category": "electronics" },
-            { "name": "TP-Link WiFi Receiver", "desc": "Nano USB Adapter for PC/Laptop.", "price": "499", "img": "https://m.media-amazon.com/images/I/51SAsXInWFL.jpg", "category": "electronics" },
-            { "name": "Syska 12W LED Bulb", "desc": "Pack of 2, Bright White Light.", "price": "199", "img": "https://m.media-amazon.com/images/I/61y49A6I9FL.jpg", "category": "electronics" },
-            { "name": "Noise ColorFit Pulse", "desc": "Smartwatch with 1.4 inch Display.", "price": "1,499", "img": "https://m.media-amazon.com/images/I/61epn29QG0L.jpg", "category": "electronics" },
-            { "name": "Zebronics Bluetooth Spk", "desc": "Portable Speaker with FM & USB.", "price": "599", "img": "https://m.media-amazon.com/images/I/81+S1UvOVOL.jpg", "category": "electronics" },
-            { "name": "Logitech Wired Keyboard", "desc": "Spill Resistant, Standard Layout.", "price": "549", "img": "https://m.media-amazon.com/images/I/516L9yE6S5L.jpg", "category": "electronics" },
-            { "name": "Pigeon Electric Kettle", "desc": "1.5 Litre Stainless Steel Body.", "price": "699", "img": "https://m.media-amazon.com/images/I/51Y2v56P9DL.jpg", "category": "electronics" },
-            { "name": "Realme Buds 2", "desc": "Deep Bass Wired Earphones.", "price": "599", "img": "https://m.media-amazon.com/images/I/61m-vVvV6GL.jpg", "category": "electronics" },
-            { "name": "Wipro Smart Plug", "desc": "10A with Energy Monitoring, WiFi.", "price": "799", "img": "https://m.media-amazon.com/images/I/61S-tVvV6GL.jpg", "category": "electronics" },
-            { "name": "Philips Beard Trimmer", "desc": "Cordless, Stainless Steel Blades.", "price": "1,199", "img": "https://m.media-amazon.com/images/I/61fS-tVvV6GL.jpg", "category": "fashion" },
-            { "name": "Amazon Basics HDMI", "desc": "6 Feet, High Speed 4K Support.", "price": "349", "img": "https://m.media-amazon.com/images/I/71m-vVvV6GL.jpg", "category": "electronics" },
-            { "name": "Boult Audio Z40 TWS", "desc": "60H Playtime, Gaming Mode.", "price": "1,299", "img": "https://m.media-amazon.com/images/I/71fS-tVvV6GL.jpg", "category": "electronics" },
-            { "name": "JBL C100SI Earphones", "desc": "In-Ear Wired with Mic, Signature Sound.", "price": "649", "img": "https://m.media-amazon.com/images/I/61m-vVvV6GL.jpg", "category": "electronics" },
-            { "name": "Rico Nose Trimmer", "desc": "Battery Operated, Easy Clean.", "price": "299", "img": "https://m.media-amazon.com/images/I/51fS-tVvV6GL.jpg", "category": "fashion" },
-            { "name": "Mivi Play Speaker", "desc": "Studio Sound, 12H Playtime.", "price": "799", "img": "https://m.media-amazon.com/images/I/61fS-tVvV6GL.jpg", "category": "electronics" },
-            { "name": "Classmate Notebooks", "desc": "Pack of 6, 172 Pages each.", "price": "350", "img": "https://m.media-amazon.com/images/I/81fS-tVvV6GL.jpg", "category": "electronics" },
-            { "name": "OnePlus Type-C OTG", "desc": "Quick Data Transfer, Compact.", "price": "399", "img": "https://m.media-amazon.com/images/I/51m-vVvV6GL.jpg", "category": "electronics" },
-            { "name": "Fastrack Sunglasses", "desc": "UV Protected, Sporty Design.", "price": "899", "img": "https://m.media-amazon.com/images/I/61m-vVvV6GL.jpg", "category": "fashion" },
-            { "name": "Redmi 10W Power Adapter", "desc": "Original Charger with Cable.", "price": "499", "img": "https://m.media-amazon.com/images/I/51fS-tVvV6GL.jpg", "category": "electronics" },
-            { "name": "Laptop Cleaning Kit", "desc": "Spray + Microfiber + Brush.", "price": "149", "img": "https://m.media-amazon.com/images/I/61m-vVvV6GL.jpg", "category": "electronics" },
-            { "name": "Boat Wave Edge Watch", "desc": "1.8 inch HD Display, Bluetooth Calling.", "price": "1,799", "img": "https://m.media-amazon.com/images/I/71fS-tVvV6GL.jpg", "category": "electronics" },
-            { "name": "Cello Venice Bottle", "desc": "Pack of 3, 1 Litre each.", "price": "299", "img": "https://m.media-amazon.com/images/I/71m-vVvV6GL.jpg", "category": "electronics" },
-            { "name": "Sandisk 128GB Card", "desc": "Class 10 Micro SD for Phones.", "price": "899", "img": "https://m.media-amazon.com/images/I/61m-vVvV6GL.jpg", "category": "electronics" },
-            { "name": "Duracell AA Batteries", "desc": "Pack of 10, Long Lasting Power.", "price": "399", "img": "https://m.media-amazon.com/images/I/71fS-tVvV6GL.jpg", "category": "electronics" },
-            { "name": "Dettol Liquid Refill", "desc": "1.5 Litre Handwash Refill.", "price": "250", "img": "https://m.media-amazon.com/images/I/61m-vVvV6GL.jpg", "category": "electronics" },
-            { "name": "Bajaj DX-6 Dry Iron", "desc": "Non-Stick Coated Soleplate.", "price": "649", "img": "https://m.media-amazon.com/images/I/61fS-tVvV6GL.jpg", "category": "electronics" },
-            { "name": "Parker Frontier Pen", "desc": "Stainless Steel Matte Black.", "price": "599", "img": "https://m.media-amazon.com/images/I/61m-vVvV6GL.jpg", "category": "electronics" },
-            { "name": "Heads Up Hair Wax", "desc": "Strong Hold, Matte Finish.", "price": "299", "img": "https://m.media-amazon.com/images/I/51fS-tVvV6GL.jpg", "category": "fashion" },
-            { "name": "VND Phone Tripod", "desc": "Flexible Gorilla Stand for Vlog.", "price": "349", "img": "https://m.media-amazon.com/images/I/61m-vVvV6GL.jpg", "category": "electronics" },
-            { "name": "Milton Lunch Box", "desc": "Insulated 3 Containers Steel.", "price": "799", "img": "https://m.media-amazon.com/images/I/71fS-tVvV6GL.jpg", "category": "electronics" },
-            { "name": "Boat Stone 190", "desc": "5W Bluetooth Speaker, IPX7.", "price": "999", "img": "https://m.media-amazon.com/images/I/71m-vVvV6GL.jpg", "category": "electronics" },
-            { "name": "Nova Hair Dryer", "desc": "1000W Gentle Drying for Kids/Adults.", "price": "499", "img": "https://m.media-amazon.com/images/I/61fS-tVvV6GL.jpg", "category": "fashion" },
-            { "name": "T-Shirt Combo", "desc": "Pack of 3 Cotton Round Neck.", "price": "699", "img": "https://m.media-amazon.com/images/I/71m-vVvV6GL.jpg", "category": "fashion" },
-            { "name": "Skybag Wallets", "desc": "Genuine Leather Men's Wallet.", "price": "499", "img": "https://m.media-amazon.com/images/I/61fS-tVvV6GL.jpg", "category": "fashion" },
-            { "name": "Agaro Foot Massager", "desc": "Manual Roller for Stress Relief.", "price": "299", "img": "https://m.media-amazon.com/images/I/51fS-tVvV6GL.jpg", "category": "electronics" },
-            { "name": "Wild Stone Cologne", "desc": "Strong Long Lasting Fragrance.", "price": "399", "img": "https://m.media-amazon.com/images/I/61fS-tVvV6GL.jpg", "category": "fashion" },
-            { "name": "Fogg Body Spray", "desc": "Pack of 2, No Gas Deodorant.", "price": "450", "img": "https://m.media-amazon.com/images/I/71m-vVvV6GL.jpg", "category": "fashion" },
-            { "name": "Zeb-Yoga Neckband", "desc": "20H Playtime Wireless Earphones.", "price": "699", "img": "https://m.media-amazon.com/images/I/61fS-tVvV6GL.jpg", "category": "electronics" },
-            { "name": "Puma Gym Bag", "desc": "Small Size Polyester Duffel Bag.", "price": "899", "img": "https://m.media-amazon.com/images/I/71m-vVvV6GL.jpg", "category": "fashion" },
-            { "name": "Eveready Flashlight", "desc": "LED Rechargeable Torch Light.", "price": "349", "img": "https://m.media-amazon.com/images/I/51fS-tVvV6GL.jpg", "category": "electronics" },
-            { "name": "Himalaya Face Wash", "desc": "Pack of 3, Neem Purifying.", "price": "399", "img": "https://m.media-amazon.com/images/I/71m-vVvV6GL.jpg", "category": "fashion" },
-            { "name": "Prestige Sandwich Maker", "desc": "Non-Stick Grill Plates.", "price": "1,399", "img": "https://m.media-amazon.com/images/I/61fS-tVvV6GL.jpg", "category": "electronics" },
-            { "name": "Borosil Glass Set", "desc": "6 Pieces, 300ml each.", "price": "599", "img": "https://m.media-amazon.com/images/I/71m-vVvV6GL.jpg", "category": "electronics" },
-            { "name": "Gizga Laptop Sleeve", "desc": "15.6 inch Padded Protection.", "price": "399", "img": "https://m.media-amazon.com/images/I/61fS-tVvV6GL.jpg", "category": "electronics" },
-            { "name": "Boat Type-C Cable", "desc": "Indestructible Braided 1.5M.", "price": "299", "img": "https://m.media-amazon.com/images/I/61m-vVvV6GL.jpg", "category": "electronics" },
-            { "name": "Portronics USB Hub", "desc": "4 Ports, High Speed Transfer.", "price": "449", "img": "https://m.media-amazon.com/images/I/51fS-tVvV6GL.jpg", "category": "electronics" },
-
-            // High price
-            { "name": "iPhone 15 Pro Max", "desc": "256GB, Titanium Blue, A17 Pro Chip.", "price": "1,48,900", "img": "https://m.media-amazon.com/images/I/81fxjeu8fdL._SL1500_.jpg", "category": "mobiles" },
-            { "name": "Samsung S24 Ultra", "desc": "12GB RAM, 512GB, Titanium Gray with AI.", "price": "1,29,999", "img": "https://m.media-amazon.com/images/I/71RzaY6929L._SL1500_.jpg", "category": "mobiles" },
-            { "name": "Google Pixel 8 Pro", "desc": "128GB, Bay Color, Best Android Camera.", "price": "1,06,999", "img": "https://m.media-amazon.com/images/I/716n8498SXL._SL1500_.jpg", "category": "mobiles" },
-            { "name": "OnePlus 12", "desc": "16GB RAM, 512GB, Silky Black, 100W Charging.", "price": "64,999", "img": "https://m.media-amazon.com/images/I/71X8scfS8AL._SL1500_.jpg", "category": "mobiles" },
-            { "name": "MacBook Air M3", "desc": "13-inch, 8GB RAM, 256GB SSD, Midnight.", "price": "1,14,900", "img": "https://m.media-amazon.com/images/I/71f5Eu5lJSL._SL1500_.jpg", "category": "electronics" },
-            { "name": "Sony WH-1000XM5", "desc": "Industry Leading Noise Cancelling Headphones.", "price": "29,990", "img": "https://m.media-amazon.com/images/I/51f98I06R7L._SL1500_.jpg", "category": "electronics" },
-            { "name": "Apple Watch Series 9", "desc": "GPS, 45mm Starlight Aluminium Case.", "price": "41,900", "img": "https://m.media-amazon.com/images/I/71XvH7E898L._SL1500_.jpg", "category": "electronics" },
-            { "name": "Sony PlayStation 5", "desc": "Slim Edition, 1TB SSD, 4K Gaming.", "price": "54,990", "img": "https://m.media-amazon.com/images/I/510uTHyDqGL._SL1500_.jpg", "category": "electronics" },
-            { "name": "iPad Air M2", "desc": "11-inch, Wi-Fi, 128GB, Space Grey.", "price": "59,900", "img": "https://m.media-amazon.com/images/I/61NfN2-mi7L._SL1500_.jpg", "category": "electronics" },
-            { "name": "Canon EOS R100", "desc": "Mirrorless Camera with 18-45mm Lens Kit.", "price": "44,990", "img": "https://m.media-amazon.com/images/I/61v4qO8D6sL._SL1500_.jpg", "category": "electronics" },
-            { "name": "ROG Zephyrus G14", "desc": "Ryzen 9, RTX 4060, 16GB RAM Gaming Laptop.", "price": "1,49,990", "img": "https://m.media-amazon.com/images/I/71mXf4YfT+L._SL1500_.jpg", "category": "electronics" },
-            { "name": "Marshall Emberton II", "desc": "Portable Bluetooth Speaker, Black & Brass.", "price": "14,999", "img": "https://m.media-amazon.com/images/I/718tSgS8z6L._SL1500_.jpg", "category": "electronics" },
-            { "name": "Dyson V15 Detect", "desc": "Cordless Vacuum Cleaner with Laser Tech.", "price": "65,900", "img": "https://m.media-amazon.com/images/I/41-q0-K8k6L.jpg", "category": "electronics" },
-            { "name": "Kindle Paperwhite", "desc": "16GB, 6.8-inch display, Adjustable Warm Light.", "price": "13,999", "img": "https://m.media-amazon.com/images/I/71X8X8-G-iL._SL1500_.jpg", "category": "electronics" },
-            { "name": "GoPro HERO12 Black", "desc": "5.3K60 Video, HDR, Waterproof Action Cam.", "price": "37,990", "img": "https://m.media-amazon.com/images/I/51YJcl8pS1L._SL1500_.jpg", "category": "electronics" },
-            { "name": "Nike Air Jordan 1", "desc": "Retro High OG, Chicago Colorway, Premium.", "price": "16,995", "img": "https://m.media-amazon.com/images/I/61mIuYJvj3L._SL1500_.jpg", "category": "fashion" }
+            // Main items
+            { "name": "boAt Bassheads 100", "desc": "Wired Earphones with Mic", "price": "399", "img": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400", "category": "electronics" },
+            { "name": "SanDisk 64GB", "desc": "USB 3.0 Flash Drive", "price": "449", "img": "https://img.icons8.com/fluency/200/usb-memory-stick.png", "category": "electronics" },
+            { "name": "Mi Backpack", "desc": "12L Water Resistant", "price": "499", "img": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400", "category": "fashion" },
+            { "name": "Ambrane Powerbank", "desc": "10000mAh Fast Charging", "price": "999", "img": "https://img.icons8.com/fluency/200/power-bank.png", "category": "electronics" },
+            { "name": "Wireless Mouse", "desc": "Silent 2.4GHz Buttons", "price": "299", "img": "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400", "category": "electronics" },
+            { "name": "WiFi Receiver", "desc": "TP-Link Nano USB", "price": "499", "img": "https://img.icons8.com/fluency/200/wi-fi-connected.png", "category": "electronics" },
+            { "name": "LED Bulb", "desc": "Syska 12W Pack of 2", "price": "199", "img": "https://img.icons8.com/fluency/200/light-bulb.png", "category": "electronics" },
+            { "name": "Noise Smartwatch", "desc": "ColorFit Pulse Display", "price": "1,499", "img": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400", "category": "electronics" },
+            { "name": "Zebronics Speaker", "desc": "Portable Bluetooth FM", "price": "599", "img": "https://images.unsplash.com/photo-1608156639585-b3a032ef9689?w=400", "category": "electronics" },
+            { "name": "Logitech Keyboard", "desc": "Wired Spill Resistant", "price": "549", "img": "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400", "category": "electronics" },
+            { "name": "Electric Kettle", "desc": "Pigeon 1.5L Stainless", "price": "699", "img": "https://img.icons8.com/fluency/200/kettle.png", "category": "electronics" },
+            { "name": "Realme Buds 2", "desc": "Deep Bass Wired", "price": "599", "img": "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400", "category": "electronics" },
+            { "name": "Wipro Smart Plug", "desc": "10A WiFi Monitoring", "price": "799", "img": "https://img.icons8.com/fluency/200/smart-plug.png", "category": "electronics" },
+            { "name": "Beard Trimmer", "desc": "Philips Cordless Blades", "price": "1,199", "img": "https://img.icons8.com/fluency/200/shaver.png", "category": "fashion" },
+            { "name": "HDMI Cable", "desc": "6 Feet 4K Support", "price": "349", "img": "https://img.icons8.com/fluency/200/hdmi-cable.png", "category": "electronics" },
+            { "name": "Z40 TWS", "desc": "Boult 60H Playtime", "price": "1,299", "img": "https://images.unsplash.com/photo-1588423770674-f2855ee476e7?w=400", "category": "electronics" },
+            { "name": "JBL C100SI", "desc": "In-Ear Signature Sound", "price": "649", "img": "https://images.unsplash.com/photo-1613040809024-b4ef7ba99bc3?w=400", "category": "electronics" },
+            { "name": "Mivi Speaker", "desc": "Play Studio Sound", "price": "799", "img": "https://img.icons8.com/fluency/200/audio-wave.png", "category": "electronics" },
+            { "name": "Notebooks", "desc": "Classmate Pack of 6", "price": "350", "img": "https://img.icons8.com/fluency/200/notebook.png", "category": "electronics" },
+            { "name": "Sunglasses", "desc": "Fastrack UV Protected", "price": "899", "img": "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400", "category": "fashion" },
+            { "name": "Power Adapter", "desc": "Redmi 10W with Cable", "price": "499", "img": "https://img.icons8.com/fluency/200/charger.png", "category": "electronics" },
+            { "name": "Cleaning Kit", "desc": "Laptop Spray & Brush", "price": "149", "img": "https://img.icons8.com/fluency/200/spray.png", "category": "electronics" },
+            { "name": "Wave Edge Watch", "desc": "boAt Bluetooth Calling", "price": "1,799", "img": "https://images.unsplash.com/photo-1508685096489-7a689bd20892?w=400", "category": "electronics" },
+            { "name": "Water Bottles", "desc": "Cello Venice Pack of 3", "price": "299", "img": "https://img.icons8.com/fluency/200/water-bottle.png", "category": "electronics" },
+            { "name": "128GB Card", "desc": "SanDisk Class 10 MicroSD", "price": "899", "img": "https://img.icons8.com/fluency/200/sd-card.png", "category": "electronics" },
+            { "name": "AA Batteries", "desc": "Duracell Pack of 10", "price": "399", "img": "https://img.icons8.com/fluency/200/battery.png", "category": "electronics" },
+            { "name": "Dry Iron", "desc": "Bajaj Non-Stick DX-6", "price": "649", "img": "https://img.icons8.com/fluency/200/iron.png", "category": "electronics" },
+            { "name": "Parker Pen", "desc": "Frontier Matte Black", "price": "599", "img": "https://img.icons8.com/fluency/200/fountain-pen.png", "category": "electronics" },
+            { "name": "Hair Wax", "desc": "Strong Matte Finish", "price": "299", "img": "https://img.icons8.com/fluency/200/cosmetic-brush.png", "category": "fashion" },
+            { "name": "Phone Tripod", "desc": "Flexible Gorilla Stand", "price": "349", "img": "https://img.icons8.com/fluency/200/tripod.png", "category": "electronics" },
+            { "name": "Lunch Box", "desc": "Milton Steel Insulated", "price": "799", "img": "https://img.icons8.com/fluency/200/lunchbox.png", "category": "electronics" },
+            { "name": "Stone 190 Spk", "desc": "boAt IPX7 Bluetooth", "price": "999", "img": "https://img.icons8.com/fluency/200/speaker.png", "category": "electronics" },
+            { "name": "Hair Dryer", "desc": "Nova 1000W Drying", "price": "499", "img": "https://img.icons8.com/fluency/200/hair-dryer.png", "category": "fashion" },
+            { "name": "T-Shirt Pack", "desc": "Pack of 3 Cotton Tees", "price": "699", "img": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=400", "category": "fashion" },
+            { "name": "Leather Wallet", "desc": "Skybag Genuine Men's", "price": "499", "img": "https://img.icons8.com/fluency/200/wallet.png", "category": "fashion" },
+            { "name": "Foot Massager", "desc": "Agaro Manual Roller", "price": "299", "img": "https://img.icons8.com/fluency/200/foot.png", "category": "electronics" },
+            { "name": "Wild Stone", "desc": "Cologne Long Lasting", "price": "399", "img": "https://img.icons8.com/fluency/200/perfume-bottle.png", "category": "fashion" },
+            { "name": "Yoga Neckband", "desc": "Zebronics 20H Wireless", "price": "699", "img": "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=400", "category": "electronics" },
+            { "name": "Puma Gym Bag", "desc": "Small Duffel Polyester", "price": "899", "img": "https://img.icons8.com/fluency/200/sport-bag.png", "category": "fashion" },
+            { "name": "LED Torch", "desc": "Eveready Rechargeable", "price": "349", "img": "https://img.icons8.com/fluency/200/flashlight.png", "category": "electronics" },
+            { "name": "Sandwich Maker", "desc": "Prestige Grill Plates", "price": "1,399", "img": "https://img.icons8.com/fluency/200/toaster.png", "category": "electronics" },
+            { "name": "Glass Set", "desc": "Borosil 6 Pieces", "price": "599", "img": "https://img.icons8.com/fluency/200/water-glass.png", "category": "electronics" },
+            { "name": "Laptop Sleeve", "desc": "Gizga 15.6 Padded", "price": "399", "img": "https://img.icons8.com/fluency/200/laptop-bag.png", "category": "electronics" },
+            { "name": "iPhone 15 Pro", "desc": "Titanium Blue 256GB", "price": "1,48,900", "img": "https://img.icons8.com/fluency/200/iphone-15-pro.png", "category": "mobiles" },
+            { "name": "S24 Ultra", "desc": "12GB RAM Titanium AI", "price": "1,29,999", "img": "https://img.icons8.com/fluency/200/samsung-galaxy-s22-ultra.png", "category": "mobiles" },
+            { "name": "Pixel 8 Pro", "desc": "Bay Color Pro Camera", "price": "1,06,999", "img": "https://img.icons8.com/fluency/200/google-pixel-6.png", "category": "mobiles" },
+            { "name": "OnePlus 12", "desc": "16GB RAM Silky Black", "price": "64,999", "img": "https://img.icons8.com/fluency/200/smartphone.png", "category": "mobiles" },
+            { "name": "MacBook Air M3", "desc": "Apple M3 Chip 256GB", "price": "1,14,900", "img": "https://images.unsplash.com/photo-1517336714467-4c388a52ad0a?w=400", "category": "electronics" },
+            { "name": "Sony XM5", "desc": "ANC Wireless Headphones", "price": "29,990", "img": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400", "category": "electronics" },
+            { "name": "Watch Series 9", "desc": "GPS 45mm Aluminium", "price": "41,900", "img": "https://img.icons8.com/fluency/200/apple-watch.png", "category": "electronics" },
+            { "name": "PlayStation 5", "desc": "Slim 1TB 4K Gaming", "price": "54,990", "img": "https://img.icons8.com/fluency/200/playstation-5--v2.png", "category": "electronics" },
+            { "name": "iPad Air M2", "desc": "11-inch Wi-Fi 128GB", "price": "59,900", "img": "https://img.icons8.com/fluency/200/ipad.png", "category": "electronics" },
+            { "name": "Nike Jordan 1", "desc": "Retro High Premium", "price": "16,995", "img": "https://images.unsplash.com/photo-1584908191113-394f7e5f299e?w=400", "category": "fashion" }
         ];
 
         let selectedPrice = "";
 
         function renderProducts(list) {
-            const sorted = list.sort((a, b) => Number(a.price.replace(/,/g, '')) - Number(b.price.replace(/,/g, '')));
             const grid = document.getElementById('productGrid');
-            grid.innerHTML = sorted.map(p => `
-                <div class="card cat-${p.category}">
-                    <img src="${p.img}" loading="lazy" alt="${p.name}" onclick="alert('More Images: Color variants Loading...')">
+            grid.innerHTML = list.map(p => `
+                <div class="card">
+                    <img src="${p.img}" loading="lazy" alt="${p.name}">
                     <div class="prod-info">
                         <h4>${p.name}</h4>
-                        <p class="prod-desc">${p.desc || 'Premium quality, best in class.'}</p>
-                        <div class="price-row">
-                            <span class="price">₹${p.price}</span>
-                            <span class="watermark">KALA BAZAR</span>
-                        </div>
+                        <p class="prod-desc">${p.desc}</p>
+                        <span class="price">₹${p.price}</span>
+                        <div class="watermark">KALA BAZAR</div>
                     </div>
                     <button class="btn-buy" onclick="buyNow('${p.price}')">BUY NOW</button>
                 </div>
@@ -244,64 +199,27 @@
             document.querySelector(`.category-btn[data-cat="${cat}"]`).classList.add('active');
         }
 
-        function buyNow(price) {
-            selectedPrice = price;
-            document.getElementById('addrModal').style.display = 'flex';
-        }
-
-        function openPayment() {
-            if (!document.getElementById('cust-name').value || !document.getElementById('cust-addr').value) {
-                alert('Please fill complete address');
-                return;
-            }
-            closeModal('addrModal');
-            document.getElementById('final-price').innerText = "Total: ₹" + selectedPrice;
-            document.getElementById('payModal').style.display = 'flex';
-        }
-
-        function confirmOrder() {
-            alert('Order Placed Successfully! Processing...');
-            location.reload();
-        }
-
-        function openMenu() {
-            document.getElementById('sidebar').style.width = "280px";
-            document.getElementById('overlay').style.display = "block";
-        }
-
-        function closeMenu() {
-            document.getElementById('sidebar').style.width = "0";
-            document.getElementById('overlay').style.display = "none";
-        }
-
-        function closeModal(id) {
-            document.getElementById(id).style.display = 'none';
-        }
-
-        function toggleAI() {
-            const chat = document.getElementById('ai-chat');
-            chat.style.display = chat.style.display === 'flex' ? 'none' : 'flex';
-        }
-
+        function buyNow(price) { selectedPrice = price; document.getElementById('addrModal').style.display = 'flex'; }
+        function openPayment() { closeModal('addrModal'); document.getElementById('final-price').innerText = "Total: ₹" + selectedPrice; document.getElementById('payModal').style.display = 'flex'; }
+        function confirmOrder() { alert('Order Placed Successfully!'); location.reload(); }
+        function openMenu() { document.getElementById('sidebar').style.width = "280px"; document.getElementById('overlay').style.display = "block"; }
+        function closeMenu() { document.getElementById('sidebar').style.width = "0"; document.getElementById('overlay').style.display = "none"; }
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+        function toggleAI() { const chat = document.getElementById('ai-chat'); chat.style.display = chat.style.display === 'flex' ? 'none' : 'flex'; }
         function sendAI() {
             const input = document.getElementById('ai-msg');
             const msg = input.value.trim();
             if (!msg) return;
-
             const body = document.getElementById('chat-body');
             body.innerHTML += `<div class="msg user">${msg}</div>`;
             input.value = '';
-
             setTimeout(() => {
-                body.innerHTML += `<div class="msg ai">धन्यवाद! आपका ऑर्डर जल्द ही प्रोसेस होगा। कोई और सवाल?</div>`;
+                body.innerHTML += `<div class="msg ai">धन्यवाद! हम आपकी मदद करेंगे।</div>`;
                 body.scrollTop = body.scrollHeight;
             }, 600);
-            body.scrollTop = body.scrollHeight;
         }
 
-        // Initial load
         renderProducts(products);
-        document.querySelector('.category-btn[data-cat="all"]').classList.add('active');
     </script>
 </body>
-</html>
+    </html>
