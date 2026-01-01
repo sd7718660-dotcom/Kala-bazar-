@@ -37,7 +37,7 @@
         .btn-buy { background: var(--gold); color: black; border: none; padding: 10px; border-radius: 8px; font-weight: bold; font-size: 0.85rem; margin-top: 12px; cursor: pointer; transition: 0.2s; }
         .btn-buy:active { transform: scale(0.95); }
 
-        /* Address Modal (Styled like Uploaded Photo) */
+        /* Address Modal (Updated UI) */
         .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; display: none; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; }
         .addr-content { background: #161616; width: 100%; max-width: 400px; padding: 30px 20px; border-radius: 20px; border: 1px solid #333; display: flex; flex-direction: column; gap: 15px; }
         .addr-title { color: var(--gold); font-size: 1.2rem; font-weight: bold; margin-bottom: 5px; text-align: center; }
@@ -55,13 +55,13 @@
             transition: 0.3s;
         }
         .styled-input:focus {
-            border: 1px solid var(--gold); /* Highlight color like photo */
+            border: 1px solid var(--gold); 
             background: #2a2a2a;
         }
         .styled-input::placeholder { color: #666; }
 
         .btn-next {
-            background: var(--blue-btn); /* Blue button from photo */
+            background: var(--blue-btn); 
             color: white;
             border: none;
             padding: 16px;
@@ -73,7 +73,7 @@
         }
         .btn-next:active { opacity: 0.8; }
 
-        /* Payment Modal (New Code Integrated) */
+        /* Payment Modal (Strictly Preserved) */
         #pay-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 10000; display: none; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; }
         .pay-box { background: #111; padding: 25px; border: 2px solid var(--gold); border-radius: 25px; width: 100%; max-width: 400px; text-align: center; position: relative; }
         .p-btn { background: #1a1a1a; margin: 8px 0; padding: 12px; border-radius: 12px; display: flex; align-items: center; gap: 15px; color: white; text-decoration: none; border: 1px solid #333; font-weight: bold; cursor: pointer; transition: 0.2s; }
@@ -171,89 +171,89 @@
     </div>
 
     <script>
-        // Updated Image URLs to generic working placeholders (Lorem Flickr)
+        // Images fixed to match Product Names (using Keywords)
         const products = [
-            // Low price accessories
-            { "name": "Microfiber Cleaning Cloth", "desc": "Pack of 5 for Screens & Lenses", "price": "99", "img": "https://loremflickr.com/320/320/cloth?random=1", "category": "electronics" },
-            { "name": "Anti Dust Plugs", "desc": "Pack of 10 for Phone Charging Port", "price": "99", "img": "https://loremflickr.com/320/320/plug?random=2", "category": "electronics" },
-            { "name": "USB LED Light", "desc": "Flexible Laptop Keyboard Light", "price": "119", "img": "https://loremflickr.com/320/320/led?random=3", "category": "electronics" },
-            { "name": "USB OTG Adapter", "desc": "Type-C to USB Adapter", "price": "129", "img": "https://loremflickr.com/320/320/adapter?random=4", "category": "electronics" },
-            { "name": "3.5mm Aux Cable", "desc": "Braided Audio Cable 1M", "price": "149", "img": "https://loremflickr.com/320/320/cable?random=5", "category": "electronics" },
-            { "name": "Cable Organizer Clips", "desc": "Pack of 10 Adhesive Clips", "price": "179", "img": "https://loremflickr.com/320/320/clips?random=6", "category": "electronics" },
-            { "name": "Phone Ring Holder", "desc": "360 Degree Rotation Metal Stand", "price": "159", "img": "https://loremflickr.com/320/320/holder?random=7", "category": "electronics" },
-            { "name": "PopSocket Grip", "desc": "Collapsible Phone Holder & Stand", "price": "199", "img": "https://loremflickr.com/320/320/grip?random=8", "category": "electronics" },
-            { "name": "Earphone Carrying Case", "desc": "Hard Shell Protective Case", "price": "229", "img": "https://loremflickr.com/320/320/case?random=9", "category": "electronics" },
-            { "name": "Portable Mini Fan", "desc": "USB Rechargeable Handheld Fan", "price": "249", "img": "https://loremflickr.com/320/320/fan?random=10", "category": "electronics" },
+            // Accessories
+            { "name": "Microfiber Cleaning Cloth", "desc": "Pack of 5 for Screens & Lenses", "price": "99", "img": "https://loremflickr.com/320/320/cleaning,cloth/all", "category": "electronics" },
+            { "name": "Anti Dust Plugs", "desc": "Pack of 10 for Phone Charging Port", "price": "99", "img": "https://loremflickr.com/320/320/usb,plug/all", "category": "electronics" },
+            { "name": "USB LED Light", "desc": "Flexible Laptop Keyboard Light", "price": "119", "img": "https://loremflickr.com/320/320/led,light/all", "category": "electronics" },
+            { "name": "USB OTG Adapter", "desc": "Type-C to USB Adapter", "price": "129", "img": "https://loremflickr.com/320/320/usb,adapter/all", "category": "electronics" },
+            { "name": "3.5mm Aux Cable", "desc": "Braided Audio Cable 1M", "price": "149", "img": "https://loremflickr.com/320/320/audio,cable/all", "category": "electronics" },
+            { "name": "Cable Organizer Clips", "desc": "Pack of 10 Adhesive Clips", "price": "179", "img": "https://loremflickr.com/320/320/cable,clips/all", "category": "electronics" },
+            { "name": "Phone Ring Holder", "desc": "360 Degree Rotation Metal Stand", "price": "159", "img": "https://loremflickr.com/320/320/phone,holder/all", "category": "electronics" },
+            { "name": "PopSocket Grip", "desc": "Collapsible Phone Holder & Stand", "price": "199", "img": "https://loremflickr.com/320/320/popsocket/all", "category": "electronics" },
+            { "name": "Earphone Carrying Case", "desc": "Hard Shell Protective Case", "price": "229", "img": "https://loremflickr.com/320/320/earphone,case/all", "category": "electronics" },
+            { "name": "Portable Mini Fan", "desc": "USB Rechargeable Handheld Fan", "price": "249", "img": "https://loremflickr.com/320/320/handheld,fan/all", "category": "electronics" },
 
-            // Main list
-            { "name": "boAt Bassheads 100", "desc": "Wired Earphones with Mic, Black.", "price": "399", "img": "https://loremflickr.com/320/320/earphones?random=11", "category": "electronics" },
-            { "name": "SanDisk 64GB Pendrive", "desc": "USB 3.0 Flash Drive, High Speed.", "price": "449", "img": "https://loremflickr.com/320/320/pendrive?random=12", "category": "electronics" },
-            { "name": "Mi Step Out Backpack", "desc": "12L Water Resistant Small Backpack.", "price": "499", "img": "https://loremflickr.com/320/320/backpack?random=13", "category": "fashion" },
-            { "name": "Ambrane 10000mAh Bank", "desc": "Fast Charging Power Bank, Dual Output.", "price": "999", "img": "https://loremflickr.com/320/320/powerbank?random=14", "category": "electronics" },
-            { "name": "Portronics Wireless Mouse", "desc": "Silent Buttons, 2.4GHz USB Receiver.", "price": "299", "img": "https://loremflickr.com/320/320/mouse?random=15", "category": "electronics" },
-            { "name": "TP-Link WiFi Receiver", "desc": "Nano USB Adapter for PC/Laptop.", "price": "499", "img": "https://loremflickr.com/320/320/wifi?random=16", "category": "electronics" },
-            { "name": "Syska 12W LED Bulb", "desc": "Pack of 2, Bright White Light.", "price": "199", "img": "https://loremflickr.com/320/320/bulb?random=17", "category": "electronics" },
-            { "name": "Noise ColorFit Pulse", "desc": "Smartwatch with 1.4 inch Display.", "price": "1,499", "img": "https://loremflickr.com/320/320/smartwatch?random=18", "category": "electronics" },
-            { "name": "Zebronics Bluetooth Spk", "desc": "Portable Speaker with FM & USB.", "price": "599", "img": "https://loremflickr.com/320/320/speaker?random=19", "category": "electronics" },
-            { "name": "Logitech Wired Keyboard", "desc": "Spill Resistant, Standard Layout.", "price": "549", "img": "https://loremflickr.com/320/320/keyboard?random=20", "category": "electronics" },
-            { "name": "Pigeon Electric Kettle", "desc": "1.5 Litre Stainless Steel Body.", "price": "699", "img": "https://loremflickr.com/320/320/kettle?random=21", "category": "electronics" },
-            { "name": "Realme Buds 2", "desc": "Deep Bass Wired Earphones.", "price": "599", "img": "https://loremflickr.com/320/320/earbuds?random=22", "category": "electronics" },
-            { "name": "Wipro Smart Plug", "desc": "10A with Energy Monitoring, WiFi.", "price": "799", "img": "https://loremflickr.com/320/320/plug?random=23", "category": "electronics" },
-            { "name": "Philips Beard Trimmer", "desc": "Cordless, Stainless Steel Blades.", "price": "1,199", "img": "https://loremflickr.com/320/320/trimmer?random=24", "category": "fashion" },
-            { "name": "Amazon Basics HDMI", "desc": "6 Feet, High Speed 4K Support.", "price": "349", "img": "https://loremflickr.com/320/320/hdmi?random=25", "category": "electronics" },
-            { "name": "Boult Audio Z40 TWS", "desc": "60H Playtime, Gaming Mode.", "price": "1,299", "img": "https://loremflickr.com/320/320/tws?random=26", "category": "electronics" },
-            { "name": "JBL C100SI Earphones", "desc": "In-Ear Wired with Mic, Signature Sound.", "price": "649", "img": "https://loremflickr.com/320/320/audio?random=27", "category": "electronics" },
-            { "name": "Rico Nose Trimmer", "desc": "Battery Operated, Easy Clean.", "price": "299", "img": "https://loremflickr.com/320/320/shaver?random=28", "category": "fashion" },
-            { "name": "Mivi Play Speaker", "desc": "Studio Sound, 12H Playtime.", "price": "799", "img": "https://loremflickr.com/320/320/music?random=29", "category": "electronics" },
-            { "name": "Classmate Notebooks", "desc": "Pack of 6, 172 Pages each.", "price": "350", "img": "https://loremflickr.com/320/320/notebook?random=30", "category": "electronics" },
-            { "name": "OnePlus Type-C OTG", "desc": "Quick Data Transfer, Compact.", "price": "399", "img": "https://loremflickr.com/320/320/usb?random=31", "category": "electronics" },
-            { "name": "Fastrack Sunglasses", "desc": "UV Protected, Sporty Design.", "price": "899", "img": "https://loremflickr.com/320/320/sunglasses?random=32", "category": "fashion" },
-            { "name": "Redmi 10W Power Adapter", "desc": "Original Charger with Cable.", "price": "499", "img": "https://loremflickr.com/320/320/charger?random=33", "category": "electronics" },
-            { "name": "Laptop Cleaning Kit", "desc": "Spray + Microfiber + Brush.", "price": "149", "img": "https://loremflickr.com/320/320/spray?random=34", "category": "electronics" },
-            { "name": "Boat Wave Edge Watch", "desc": "1.8 inch HD Display, Bluetooth Calling.", "price": "1,799", "img": "https://loremflickr.com/320/320/watch?random=35", "category": "electronics" },
-            { "name": "Cello Venice Bottle", "desc": "Pack of 3, 1 Litre each.", "price": "299", "img": "https://loremflickr.com/320/320/bottle?random=36", "category": "electronics" },
-            { "name": "Sandisk 128GB Card", "desc": "Class 10 Micro SD for Phones.", "price": "899", "img": "https://loremflickr.com/320/320/sdcard?random=37", "category": "electronics" },
-            { "name": "Duracell AA Batteries", "desc": "Pack of 10, Long Lasting Power.", "price": "399", "img": "https://loremflickr.com/320/320/battery?random=38", "category": "electronics" },
-            { "name": "Dettol Liquid Refill", "desc": "1.5 Litre Handwash Refill.", "price": "250", "img": "https://loremflickr.com/320/320/soap?random=39", "category": "electronics" },
-            { "name": "Bajaj DX-6 Dry Iron", "desc": "Non-Stick Coated Soleplate.", "price": "649", "img": "https://loremflickr.com/320/320/iron?random=40", "category": "electronics" },
-            { "name": "Parker Frontier Pen", "desc": "Stainless Steel Matte Black.", "price": "599", "img": "https://loremflickr.com/320/320/pen?random=41", "category": "electronics" },
-            { "name": "Heads Up Hair Wax", "desc": "Strong Hold, Matte Finish.", "price": "299", "img": "https://loremflickr.com/320/320/hair?random=42", "category": "fashion" },
-            { "name": "VND Phone Tripod", "desc": "Flexible Gorilla Stand for Vlog.", "price": "349", "img": "https://loremflickr.com/320/320/tripod?random=43", "category": "electronics" },
-            { "name": "Milton Lunch Box", "desc": "Insulated 3 Containers Steel.", "price": "799", "img": "https://loremflickr.com/320/320/lunchbox?random=44", "category": "electronics" },
-            { "name": "Boat Stone 190", "desc": "5W Bluetooth Speaker, IPX7.", "price": "999", "img": "https://loremflickr.com/320/320/speaker?random=45", "category": "electronics" },
-            { "name": "Nova Hair Dryer", "desc": "1000W Gentle Drying for Kids/Adults.", "price": "499", "img": "https://loremflickr.com/320/320/dryer?random=46", "category": "fashion" },
-            { "name": "T-Shirt Combo", "desc": "Pack of 3 Cotton Round Neck.", "price": "699", "img": "https://loremflickr.com/320/320/tshirt?random=47", "category": "fashion" },
-            { "name": "Skybag Wallets", "desc": "Genuine Leather Men's Wallet.", "price": "499", "img": "https://loremflickr.com/320/320/wallet?random=48", "category": "fashion" },
-            { "name": "Agaro Foot Massager", "desc": "Manual Roller for Stress Relief.", "price": "299", "img": "https://loremflickr.com/320/320/massager?random=49", "category": "electronics" },
-            { "name": "Wild Stone Cologne", "desc": "Strong Long Lasting Fragrance.", "price": "399", "img": "https://loremflickr.com/320/320/perfume?random=50", "category": "fashion" },
-            { "name": "Fogg Body Spray", "desc": "Pack of 2, No Gas Deodorant.", "price": "450", "img": "https://loremflickr.com/320/320/deo?random=51", "category": "fashion" },
-            { "name": "Zeb-Yoga Neckband", "desc": "20H Playtime Wireless Earphones.", "price": "699", "img": "https://loremflickr.com/320/320/neckband?random=52", "category": "electronics" },
-            { "name": "Puma Gym Bag", "desc": "Small Size Polyester Duffel Bag.", "price": "899", "img": "https://loremflickr.com/320/320/bag?random=53", "category": "fashion" },
-            { "name": "Eveready Flashlight", "desc": "LED Rechargeable Torch Light.", "price": "349", "img": "https://loremflickr.com/320/320/torch?random=54", "category": "electronics" },
-            { "name": "Himalaya Face Wash", "desc": "Pack of 3, Neem Purifying.", "price": "399", "img": "https://loremflickr.com/320/320/facewash?random=55", "category": "fashion" },
-            { "name": "Prestige Sandwich Maker", "desc": "Non-Stick Grill Plates.", "price": "1,399", "img": "https://loremflickr.com/320/320/toaster?random=56", "category": "electronics" },
-            { "name": "Borosil Glass Set", "desc": "6 Pieces, 300ml each.", "price": "599", "img": "https://loremflickr.com/320/320/glass?random=57", "category": "electronics" },
-            { "name": "Gizga Laptop Sleeve", "desc": "15.6 inch Padded Protection.", "price": "399", "img": "https://loremflickr.com/320/320/laptopbag?random=58", "category": "electronics" },
-            { "name": "Boat Type-C Cable", "desc": "Indestructible Braided 1.5M.", "price": "299", "img": "https://loremflickr.com/320/320/wire?random=59", "category": "electronics" },
-            { "name": "Portronics USB Hub", "desc": "4 Ports, High Speed Transfer.", "price": "449", "img": "https://loremflickr.com/320/320/hub?random=60", "category": "electronics" },
+            // Main Electronics
+            { "name": "boAt Bassheads 100", "desc": "Wired Earphones with Mic, Black.", "price": "399", "img": "https://loremflickr.com/320/320/earphones,wired/all", "category": "electronics" },
+            { "name": "SanDisk 64GB Pendrive", "desc": "USB 3.0 Flash Drive, High Speed.", "price": "449", "img": "https://loremflickr.com/320/320/usb,pendrive/all", "category": "electronics" },
+            { "name": "Mi Step Out Backpack", "desc": "12L Water Resistant Small Backpack.", "price": "499", "img": "https://loremflickr.com/320/320/backpack,bag/all", "category": "fashion" },
+            { "name": "Ambrane 10000mAh Bank", "desc": "Fast Charging Power Bank, Dual Output.", "price": "999", "img": "https://loremflickr.com/320/320/powerbank/all", "category": "electronics" },
+            { "name": "Portronics Wireless Mouse", "desc": "Silent Buttons, 2.4GHz USB Receiver.", "price": "299", "img": "https://loremflickr.com/320/320/computer,mouse/all", "category": "electronics" },
+            { "name": "TP-Link WiFi Receiver", "desc": "Nano USB Adapter for PC/Laptop.", "price": "499", "img": "https://loremflickr.com/320/320/wifi,usb/all", "category": "electronics" },
+            { "name": "Syska 12W LED Bulb", "desc": "Pack of 2, Bright White Light.", "price": "199", "img": "https://loremflickr.com/320/320/led,bulb/all", "category": "electronics" },
+            { "name": "Noise ColorFit Pulse", "desc": "Smartwatch with 1.4 inch Display.", "price": "1,499", "img": "https://loremflickr.com/320/320/smartwatch/all", "category": "electronics" },
+            { "name": "Zebronics Bluetooth Spk", "desc": "Portable Speaker with FM & USB.", "price": "599", "img": "https://loremflickr.com/320/320/bluetooth,speaker/all", "category": "electronics" },
+            { "name": "Logitech Wired Keyboard", "desc": "Spill Resistant, Standard Layout.", "price": "549", "img": "https://loremflickr.com/320/320/computer,keyboard/all", "category": "electronics" },
+            { "name": "Pigeon Electric Kettle", "desc": "1.5 Litre Stainless Steel Body.", "price": "699", "img": "https://loremflickr.com/320/320/electric,kettle/all", "category": "electronics" },
+            { "name": "Realme Buds 2", "desc": "Deep Bass Wired Earphones.", "price": "599", "img": "https://loremflickr.com/320/320/earbuds/all", "category": "electronics" },
+            { "name": "Wipro Smart Plug", "desc": "10A with Energy Monitoring, WiFi.", "price": "799", "img": "https://loremflickr.com/320/320/smart,plug/all", "category": "electronics" },
+            { "name": "Philips Beard Trimmer", "desc": "Cordless, Stainless Steel Blades.", "price": "1,199", "img": "https://loremflickr.com/320/320/beard,trimmer/all", "category": "fashion" },
+            { "name": "Amazon Basics HDMI", "desc": "6 Feet, High Speed 4K Support.", "price": "349", "img": "https://loremflickr.com/320/320/hdmi,cable/all", "category": "electronics" },
+            { "name": "Boult Audio Z40 TWS", "desc": "60H Playtime, Gaming Mode.", "price": "1,299", "img": "https://loremflickr.com/320/320/wireless,earbuds/all", "category": "electronics" },
+            { "name": "JBL C100SI Earphones", "desc": "In-Ear Wired with Mic, Signature Sound.", "price": "649", "img": "https://loremflickr.com/320/320/jbl,headphone/all", "category": "electronics" },
+            { "name": "Rico Nose Trimmer", "desc": "Battery Operated, Easy Clean.", "price": "299", "img": "https://loremflickr.com/320/320/nose,trimmer/all", "category": "fashion" },
+            { "name": "Mivi Play Speaker", "desc": "Studio Sound, 12H Playtime.", "price": "799", "img": "https://loremflickr.com/320/320/mini,speaker/all", "category": "electronics" },
+            { "name": "Classmate Notebooks", "desc": "Pack of 6, 172 Pages each.", "price": "350", "img": "https://loremflickr.com/320/320/notebook,paper/all", "category": "electronics" },
+            { "name": "OnePlus Type-C OTG", "desc": "Quick Data Transfer, Compact.", "price": "399", "img": "https://loremflickr.com/320/320/otg,adapter/all", "category": "electronics" },
+            { "name": "Fastrack Sunglasses", "desc": "UV Protected, Sporty Design.", "price": "899", "img": "https://loremflickr.com/320/320/sunglasses,men/all", "category": "fashion" },
+            { "name": "Redmi 10W Power Adapter", "desc": "Original Charger with Cable.", "price": "499", "img": "https://loremflickr.com/320/320/phone,charger/all", "category": "electronics" },
+            { "name": "Laptop Cleaning Kit", "desc": "Spray + Microfiber + Brush.", "price": "149", "img": "https://loremflickr.com/320/320/cleaning,spray/all", "category": "electronics" },
+            { "name": "Boat Wave Edge Watch", "desc": "1.8 inch HD Display, Bluetooth Calling.", "price": "1,799", "img": "https://loremflickr.com/320/320/smartwatch,black/all", "category": "electronics" },
+            { "name": "Cello Venice Bottle", "desc": "Pack of 3, 1 Litre each.", "price": "299", "img": "https://loremflickr.com/320/320/water,bottle/all", "category": "electronics" },
+            { "name": "Sandisk 128GB Card", "desc": "Class 10 Micro SD for Phones.", "price": "899", "img": "https://loremflickr.com/320/320/sdcard/all", "category": "electronics" },
+            { "name": "Duracell AA Batteries", "desc": "Pack of 10, Long Lasting Power.", "price": "399", "img": "https://loremflickr.com/320/320/battery/all", "category": "electronics" },
+            { "name": "Dettol Liquid Refill", "desc": "1.5 Litre Handwash Refill.", "price": "250", "img": "https://loremflickr.com/320/320/handwash/all", "category": "electronics" },
+            { "name": "Bajaj DX-6 Dry Iron", "desc": "Non-Stick Coated Soleplate.", "price": "649", "img": "https://loremflickr.com/320/320/electric,iron/all", "category": "electronics" },
+            { "name": "Parker Frontier Pen", "desc": "Stainless Steel Matte Black.", "price": "599", "img": "https://loremflickr.com/320/320/pen,luxury/all", "category": "electronics" },
+            { "name": "Heads Up Hair Wax", "desc": "Strong Hold, Matte Finish.", "price": "299", "img": "https://loremflickr.com/320/320/hair,gel/all", "category": "fashion" },
+            { "name": "VND Phone Tripod", "desc": "Flexible Gorilla Stand for Vlog.", "price": "349", "img": "https://loremflickr.com/320/320/tripod,stand/all", "category": "electronics" },
+            { "name": "Milton Lunch Box", "desc": "Insulated 3 Containers Steel.", "price": "799", "img": "https://loremflickr.com/320/320/lunchbox/all", "category": "electronics" },
+            { "name": "Boat Stone 190", "desc": "5W Bluetooth Speaker, IPX7.", "price": "999", "img": "https://loremflickr.com/320/320/wireless,speaker/all", "category": "electronics" },
+            { "name": "Nova Hair Dryer", "desc": "1000W Gentle Drying for Kids/Adults.", "price": "499", "img": "https://loremflickr.com/320/320/hair,dryer/all", "category": "fashion" },
+            { "name": "T-Shirt Combo", "desc": "Pack of 3 Cotton Round Neck.", "price": "699", "img": "https://loremflickr.com/320/320/tshirt,men/all", "category": "fashion" },
+            { "name": "Skybag Wallets", "desc": "Genuine Leather Men's Wallet.", "price": "499", "img": "https://loremflickr.com/320/320/leather,wallet/all", "category": "fashion" },
+            { "name": "Agaro Foot Massager", "desc": "Manual Roller for Stress Relief.", "price": "299", "img": "https://loremflickr.com/320/320/massage,roller/all", "category": "electronics" },
+            { "name": "Wild Stone Cologne", "desc": "Strong Long Lasting Fragrance.", "price": "399", "img": "https://loremflickr.com/320/320/perfume,bottle/all", "category": "fashion" },
+            { "name": "Fogg Body Spray", "desc": "Pack of 2, No Gas Deodorant.", "price": "450", "img": "https://loremflickr.com/320/320/deodorant,spray/all", "category": "fashion" },
+            { "name": "Zeb-Yoga Neckband", "desc": "20H Playtime Wireless Earphones.", "price": "699", "img": "https://loremflickr.com/320/320/neckband,earphones/all", "category": "electronics" },
+            { "name": "Puma Gym Bag", "desc": "Small Size Polyester Duffel Bag.", "price": "899", "img": "https://loremflickr.com/320/320/gym,bag/all", "category": "fashion" },
+            { "name": "Eveready Flashlight", "desc": "LED Rechargeable Torch Light.", "price": "349", "img": "https://loremflickr.com/320/320/flashlight/all", "category": "electronics" },
+            { "name": "Himalaya Face Wash", "desc": "Pack of 3, Neem Purifying.", "price": "399", "img": "https://loremflickr.com/320/320/facewash/all", "category": "fashion" },
+            { "name": "Prestige Sandwich Maker", "desc": "Non-Stick Grill Plates.", "price": "1,399", "img": "https://loremflickr.com/320/320/sandwich,maker/all", "category": "electronics" },
+            { "name": "Borosil Glass Set", "desc": "6 Pieces, 300ml each.", "price": "599", "img": "https://loremflickr.com/320/320/glass,cup/all", "category": "electronics" },
+            { "name": "Gizga Laptop Sleeve", "desc": "15.6 inch Padded Protection.", "price": "399", "img": "https://loremflickr.com/320/320/laptop,sleeve/all", "category": "electronics" },
+            { "name": "Boat Type-C Cable", "desc": "Indestructible Braided 1.5M.", "price": "299", "img": "https://loremflickr.com/320/320/usb,cable/all", "category": "electronics" },
+            { "name": "Portronics USB Hub", "desc": "4 Ports, High Speed Transfer.", "price": "449", "img": "https://loremflickr.com/320/320/usb,hub/all", "category": "electronics" },
 
-            // High price
-            { "name": "iPhone 15 Pro Max", "desc": "256GB, Titanium Blue, A17 Pro Chip.", "price": "1,48,900", "img": "https://loremflickr.com/320/320/iphone?random=61", "category": "mobiles" },
-            { "name": "Samsung S24 Ultra", "desc": "12GB RAM, 512GB, Titanium Gray with AI.", "price": "1,29,999", "img": "https://loremflickr.com/320/320/samsung?random=62", "category": "mobiles" },
-            { "name": "Google Pixel 8 Pro", "desc": "128GB, Bay Color, Best Android Camera.", "price": "1,06,999", "img": "https://loremflickr.com/320/320/pixel?random=63", "category": "mobiles" },
-            { "name": "OnePlus 12", "desc": "16GB RAM, 512GB, Silky Black, 100W Charging.", "price": "64,999", "img": "https://loremflickr.com/320/320/oneplus?random=64", "category": "mobiles" },
-            { "name": "MacBook Air M3", "desc": "13-inch, 8GB RAM, 256GB SSD, Midnight.", "price": "1,14,900", "img": "https://loremflickr.com/320/320/macbook?random=65", "category": "electronics" },
-            { "name": "Sony WH-1000XM5", "desc": "Industry Leading Noise Cancelling Headphones.", "price": "29,990", "img": "https://loremflickr.com/320/320/headphone?random=66", "category": "electronics" },
-            { "name": "Apple Watch Series 9", "desc": "GPS, 45mm Starlight Aluminium Case.", "price": "41,900", "img": "https://loremflickr.com/320/320/iwatch?random=67", "category": "electronics" },
-            { "name": "Sony PlayStation 5", "desc": "Slim Edition, 1TB SSD, 4K Gaming.", "price": "54,990", "img": "https://loremflickr.com/320/320/ps5?random=68", "category": "electronics" },
-            { "name": "iPad Air M2", "desc": "11-inch, Wi-Fi, 128GB, Space Grey.", "price": "59,900", "img": "https://loremflickr.com/320/320/ipad?random=69", "category": "electronics" },
-            { "name": "Canon EOS R100", "desc": "Mirrorless Camera with 18-45mm Lens Kit.", "price": "44,990", "img": "https://loremflickr.com/320/320/camera?random=70", "category": "electronics" },
-            { "name": "ROG Zephyrus G14", "desc": "Ryzen 9, RTX 4060, 16GB RAM Gaming Laptop.", "price": "1,49,990", "img": "https://loremflickr.com/320/320/gaminglaptop?random=71", "category": "electronics" },
-            { "name": "Marshall Emberton II", "desc": "Portable Bluetooth Speaker, Black & Brass.", "price": "14,999", "img": "https://loremflickr.com/320/320/marshall?random=72", "category": "electronics" },
-            { "name": "Dyson V15 Detect", "desc": "Cordless Vacuum Cleaner with Laser Tech.", "price": "65,900", "img": "https://loremflickr.com/320/320/vacuum?random=73", "category": "electronics" },
-            { "name": "Kindle Paperwhite", "desc": "16GB, 6.8-inch display, Adjustable Warm Light.", "price": "13,999", "img": "https://loremflickr.com/320/320/kindle?random=74", "category": "electronics" },
-            { "name": "GoPro HERO12 Black", "desc": "5.3K60 Video, HDR, Waterproof Action Cam.", "price": "37,990", "img": "https://loremflickr.com/320/320/gopro?random=75", "category": "electronics" },
-            { "name": "Nike Air Jordan 1", "desc": "Retro High OG, Chicago Colorway, Premium.", "price": "16,995", "img": "https://loremflickr.com/320/320/sneakers?random=76", "category": "fashion" }
+            // High Price Items (Targeted Keywords)
+            { "name": "iPhone 15 Pro Max", "desc": "256GB, Titanium Blue, A17 Pro Chip.", "price": "1,48,900", "img": "https://loremflickr.com/320/320/iphone/all", "category": "mobiles" },
+            { "name": "Samsung S24 Ultra", "desc": "12GB RAM, 512GB, Titanium Gray with AI.", "price": "1,29,999", "img": "https://loremflickr.com/320/320/samsung,mobile/all", "category": "mobiles" },
+            { "name": "Google Pixel 8 Pro", "desc": "128GB, Bay Color, Best Android Camera.", "price": "1,06,999", "img": "https://loremflickr.com/320/320/google,pixel/all", "category": "mobiles" },
+            { "name": "OnePlus 12", "desc": "16GB RAM, 512GB, Silky Black, 100W Charging.", "price": "64,999", "img": "https://loremflickr.com/320/320/smartphone/all", "category": "mobiles" },
+            { "name": "MacBook Air M3", "desc": "13-inch, 8GB RAM, 256GB SSD, Midnight.", "price": "1,14,900", "img": "https://loremflickr.com/320/320/macbook,laptop/all", "category": "electronics" },
+            { "name": "Sony WH-1000XM5", "desc": "Industry Leading Noise Cancelling Headphones.", "price": "29,990", "img": "https://loremflickr.com/320/320/headphones/all", "category": "electronics" },
+            { "name": "Apple Watch Series 9", "desc": "GPS, 45mm Starlight Aluminium Case.", "price": "41,900", "img": "https://loremflickr.com/320/320/apple,watch/all", "category": "electronics" },
+            { "name": "Sony PlayStation 5", "desc": "Slim Edition, 1TB SSD, 4K Gaming.", "price": "54,990", "img": "https://loremflickr.com/320/320/playstation,console/all", "category": "electronics" },
+            { "name": "iPad Air M2", "desc": "11-inch, Wi-Fi, 128GB, Space Grey.", "price": "59,900", "img": "https://loremflickr.com/320/320/ipad,tablet/all", "category": "electronics" },
+            { "name": "Canon EOS R100", "desc": "Mirrorless Camera with 18-45mm Lens Kit.", "price": "44,990", "img": "https://loremflickr.com/320/320/canon,camera/all", "category": "electronics" },
+            { "name": "ROG Zephyrus G14", "desc": "Ryzen 9, RTX 4060, 16GB RAM Gaming Laptop.", "price": "1,49,990", "img": "https://loremflickr.com/320/320/gaming,laptop/all", "category": "electronics" },
+            { "name": "Marshall Emberton II", "desc": "Portable Bluetooth Speaker, Black & Brass.", "price": "14,999", "img": "https://loremflickr.com/320/320/marshall,speaker/all", "category": "electronics" },
+            { "name": "Dyson V15 Detect", "desc": "Cordless Vacuum Cleaner with Laser Tech.", "price": "65,900", "img": "https://loremflickr.com/320/320/dyson,vacuum/all", "category": "electronics" },
+            { "name": "Kindle Paperwhite", "desc": "16GB, 6.8-inch display, Adjustable Warm Light.", "price": "13,999", "img": "https://loremflickr.com/320/320/ebook,reader/all", "category": "electronics" },
+            { "name": "GoPro HERO12 Black", "desc": "5.3K60 Video, HDR, Waterproof Action Cam.", "price": "37,990", "img": "https://loremflickr.com/320/320/gopro/all", "category": "electronics" },
+            { "name": "Nike Air Jordan 1", "desc": "Retro High OG, Chicago Colorway, Premium.", "price": "16,995", "img": "https://loremflickr.com/320/320/jordan,sneakers/all", "category": "fashion" }
         ];
 
         let selectedPrice = "";
@@ -286,15 +286,12 @@
             document.querySelector(`.category-btn[data-cat="${cat}"]`).classList.add('active');
         }
 
-        // Updated Buy flow
         function buyNow(price) {
             selectedPrice = price;
-            // Open updated address modal
             document.getElementById('addrModal').style.display = 'flex';
         }
 
         function proceedToPay() {
-            // Simple validation
             if (!document.getElementById('cust-name').value || !document.getElementById('cust-addr').value) {
                 alert('Please fill complete address details');
                 return;
@@ -303,11 +300,9 @@
             openPay(selectedPrice);
         }
 
-        // --- New Payment Logic from user request ---
         function openPay(amt) {
             document.getElementById('pay-modal').style.display = 'flex';
             document.getElementById('p-amt').innerText = "Total: ₹" + amt;
-            // Exact UPI Logic provided
             const cleanAmt = amt.replace(/,/g, '');
             const upi = `upi://pay?pa=rizwanhasan90122778623@ybl&am=${cleanAmt}&cu=INR`;
             document.getElementById('gpay').href = upi;
@@ -351,7 +346,6 @@
                 }
             }, 2500);
         }
-        // -------------------------------------------
 
         function openMenu() {
             document.getElementById('sidebar').style.width = "280px";
@@ -393,4 +387,4 @@
         document.querySelector('.category-btn[data-cat="all"]').classList.add('active');
     </script>
 </body>
-</html>
+    </html>
